@@ -1,0 +1,10 @@
+﻿{
+  Id: Guid_1,
+  Name: Joe Bloggs,
+  Address: {
+    AddressLine1: 1 Test Ave,
+    City: Test City,
+    Country: New Zealand,
+    PostCode: 1234
+  }
+}
