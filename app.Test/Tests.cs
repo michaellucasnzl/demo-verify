@@ -1,5 +1,3 @@
-using System.Drawing;
-using System.Text.Json;
 using FluentAssertions;
 
 namespace app.Test;
@@ -13,6 +11,7 @@ public class Tests
         var person = new Person()
         {
             Name = "Joe Bloggs",
+            DateOfBirth = new DateOnly(1950,1,1),
             Address = new Address()
             {
                 AddressLine1 = "1 Test Ave",
@@ -37,6 +36,7 @@ public class Tests
         var person = new Person()
         {
             Name = "Joe Bloggs",
+            DateOfBirth = new DateOnly(1950, 1, 1),
             Address = new Address()
             {
                 AddressLine1 = "1 Test Ave",

@@ -1,5 +1,6 @@
 ﻿{
   Id: Guid_1,
+  DateOfBirth: Date_1,
   Name: Joe Bloggs,
   Address: {
     AddressLine1: 1 Test Ave,
