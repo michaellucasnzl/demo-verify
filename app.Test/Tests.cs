@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Text.Json;
 using FluentAssertions;
 
 namespace app.Test;
@@ -27,7 +28,7 @@ public class Tests
         person.Address.Country.Should().Be("New Zealand");
         person.Address.PostCode.Should().Be("1234");
         person.Address.Suburb.Should().BeNull();
-        person.Address.AddressLine2.Should().BeNull();        
+        person.Address.AddressLine2.Should().BeNull();
     }
 
     [Fact]
@@ -44,13 +45,23 @@ public class Tests
                 PostCode = "1234"
             }
         };
-        
+
         await Verify(person);
     }
 
-   
+    [Fact]
+    public async Task IntegrationTest()
+    {
+        var apiUrl = "https://archive-api.open-meteo.com/v1/archive?latitude=52.52&longitude=13.41&start_date=2023-07-15&end_date=2023-07-29&hourly=temperature_2m";
 
+        using var httpClient = new HttpClient();
+        var response = await httpClient.GetAsync(apiUrl);
+        var result = await response.Content.ReadAsStringAsync();
 
-
+        var settings = new VerifySettings();
+        settings.IgnoreMember("generationtime_ms");
+        await VerifyJson(result, settings);
+    }
 
 }
+
